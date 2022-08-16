@@ -18,6 +18,9 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "extra": {
+        "class": "Factorit\\ComposerWorkspacePlugin\\Plugin"
+    },
     "config": {
         "sort-packages": true
     }
