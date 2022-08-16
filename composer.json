@@ -1,0 +1,23 @@
+{
+    "name": "factorit/composer-workspace-plugin",
+    "description": "Composer plugin for a monorepo workspace",
+    "type": "composer-plugin",
+    "require": {
+        "php": "^8.1",
+        "composer-plugin-api": "^2.3",
+        "symfony/finder": "^6.1"
+    },
+    "require-dev": {
+        "composer/composer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Factorit\\ComposerWorkspacePlugin\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}
