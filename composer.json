@@ -2,6 +2,7 @@
     "name": "factorit/composer-workspace-plugin",
     "description": "Composer plugin for a monorepo workspace",
     "type": "composer-plugin",
+    "license": "proprietary",
     "require": {
         "php": "^8.1",
         "composer-plugin-api": "^2.3",
