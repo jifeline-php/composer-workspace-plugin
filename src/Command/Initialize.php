@@ -6,14 +6,13 @@ namespace Factorit\ComposerWorkspacePlugin\Command;
 
 use Composer\Command\BaseCommand;
 use Composer\Config\JsonConfigSource;
-use Composer\Console\Input\InputOption;
 use Composer\Json\JsonFile;
 use Composer\Util\Filesystem;
 use Composer\Util\Platform;
 use Factorit\ComposerWorkspacePlugin\Factory;
 use Factorit\ComposerWorkspacePlugin\WorkspaceConfig;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption as SymfonyInputOption;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class Initialize extends BaseCommand
@@ -27,7 +26,7 @@ final class Initialize extends BaseCommand
                 new InputOption(
                     'packages',
                     null,
-                    SymfonyInputOption::VALUE_IS_ARRAY | SymfonyInputOption::VALUE_REQUIRED,
+                    InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
                     'paths to packages'
                 ),
             ]
