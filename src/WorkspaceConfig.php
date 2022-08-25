@@ -47,6 +47,7 @@ final class WorkspaceConfig
 
     public function setPackagePaths(array $paths): void
     {
+        $this->packagePaths = [];
         foreach ($paths as $path) {
             if (is_string($path)) {
                 $this->addPackagePath($path);
