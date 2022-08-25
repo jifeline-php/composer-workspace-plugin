@@ -52,8 +52,15 @@ final class Initialize extends BaseCommand
         }
 
         $io = $this->getIO();
-        $io->write('<info>- A path must be relative to the current working directory (%s).</info>');
+        
+        $io->write(
+            sprintf(
+                '<info>- A path must be relative to the current working directory (%s).</info>',
+                $this->workspaceConfig->getRootPath()
+            )
+        );
         $io->write('<info>- A path can contain wildcards (* and ?).</info>');
+
         while (null !== $package = $io->ask('Add path to packages: ')) {
             $packages[] = $package;
         }

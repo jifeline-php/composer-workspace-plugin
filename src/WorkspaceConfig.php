@@ -12,7 +12,7 @@ final class WorkspaceConfig
     /** @var string[] */
     private array $packagePaths = [];
 
-    private function __construct()
+    private function __construct(private string $rootPath)
     {
         // NoOp
     }
@@ -21,18 +21,23 @@ final class WorkspaceConfig
     {
         $config = $composerFile->read();
 
-        return self::fromArray($config['extra']['workspace'] ?? []);
+        return self::fromArray($composerFile->getPath(), $config['extra']['workspace'] ?? []);
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray(string $rootPath, array $data): self
     {
-        $config = new self();
+        $config = new self($rootPath);
 
         if (isset($data['paths']) && is_array($data['paths'])) {
             $config->setPackagePaths($data['paths']);
         }
 
         return $config;
+    }
+
+    public function getRootPath(): string
+    {
+        return $this->rootPath;
     }
 
     public function addPackagePath(string $path): void

@@ -6,13 +6,35 @@ namespace Factorit\ComposerWorkspacePlugin;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Composer\Json\JsonFile;
+use Composer\Package\RootPackageInterface;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
+use Composer\Util\Platform;
 
 final class Plugin implements PluginInterface, Capable
 {
+    private WorkspaceConfig $workspaceRoot;
+
     public function activate(Composer $composer, IOInterface $io)
     {
+        $package = $composer->getPackage();
+        if ($this->isWorkspaceRoot($package)) {
+            $this->workspaceRoot = WorkspaceConfig::fromArray(
+                Platform::getCwd(),
+                $package->getExtra()['workspace']
+            );
+        } else {
+            $workspaceRoot = Factory::findWorkspaceRootOrThrow();
+            $composerFile = new JsonFile($workspaceRoot . DIRECTORY_SEPARATOR . Factory::getComposerFile());
+
+            $this->workspaceRoot = WorkspaceConfig::fromJsonFile($composerFile);
+        }
+    }
+
+    private function isWorkspaceRoot(RootPackageInterface $package): bool
+    {
+        return isset($package->getExtra()['workspace']);
     }
 
     public function deactivate(Composer $composer, IOInterface $io)
@@ -34,6 +56,6 @@ final class Plugin implements PluginInterface, Capable
 
     public function getWorkspaceConfig(): WorkspaceConfig
     {
-        return WorkspaceConfig::fromArray([]);
+        return $this->workspaceRoot;
     }
 }
