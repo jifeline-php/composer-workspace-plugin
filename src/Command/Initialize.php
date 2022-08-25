@@ -11,7 +11,6 @@ use Composer\Util\Filesystem;
 use Composer\Util\Platform;
 use Factorit\ComposerWorkspacePlugin\Factory;
 use Factorit\ComposerWorkspacePlugin\WorkspaceConfig;
-use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -21,16 +20,6 @@ final class Initialize extends BaseCommand
     {
         $this->setName('workspace:init');
         $this->setDescription('Initialize workspace in current directory');
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $cwd = Platform::getCwd(true);
-        if (file_exists($cwd . DIRECTORY_SEPARATOR . Factory::getComposerFile())) {
-            throw new RuntimeException('Workspace is already initialized.');
-        }
-
-        parent::initialize($input, $output);
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
