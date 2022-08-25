@@ -11,10 +11,8 @@ final class CommandProvider implements ComposerCommandProvider
 {
     private Plugin $plugin;
 
-    public function __construct($args)
+    public function __construct(array $args)
     {
-        var_dump(func_get_args());
-
         ['plugin' => $this->plugin] = $args;
     }
 
