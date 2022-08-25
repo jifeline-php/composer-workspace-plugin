@@ -59,7 +59,7 @@ final class Initialize extends BaseCommand
             $packages[] = $package;
         }
 
-        return $packages;
+        return $this->normalizePackagePaths($packages);
     }
 
     private function normalizePackagePaths(array $packagePaths): array
