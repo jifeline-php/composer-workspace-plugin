@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Factorit\ComposerWorkspacePlugin\Command;
 
-use Composer\Command\BaseCommand;
 use Composer\Config\JsonConfigSource;
 use Composer\Json\JsonFile;
 use Composer\Util\Filesystem;
