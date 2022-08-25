@@ -15,7 +15,7 @@ trait FilesystemTestTrait
     {
         $this->previousCwd = getcwd();
 
-        $tmpDir = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid('workspace-');
+        $tmpDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('workspace-');
         $this->ensureDirectoryExistsAndClear($tmpDir);
 
         $realTmpDir = realpath($tmpDir);
@@ -43,13 +43,16 @@ trait FilesystemTestTrait
     private function teardownWorkspaceRoot(): void
     {
         chdir($this->previousCwd);
-        exec('rm -rf '.$this->workspaceRoot);
+        exec('rm -rf ' . $this->workspaceRoot);
     }
 
     private function createComposerFile(array $contents = [], string $directory = '.'): void
     {
         $this->ensureDirectoryExists($directory);
-        file_put_contents($directory.DIRECTORY_SEPARATOR.'composer.json', json_encode($contents, JSON_PRETTY_PRINT));
+        file_put_contents(
+            $directory . DIRECTORY_SEPARATOR . 'composer.json',
+            json_encode($contents, JSON_PRETTY_PRINT)
+        );
     }
 
     private function createDirectory(string $path): void

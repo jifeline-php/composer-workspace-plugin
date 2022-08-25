@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Factorit\ComposerWorkspacePlugin;
 
 use Composer\Util\Platform;
+use Exception;
 
 final class Factory
 {
@@ -12,9 +13,9 @@ final class Factory
     {
         $workspaceRoot = self::findWorkspaceRoot();
 
-        if (!file_exists($workspaceRoot.DIRECTORY_SEPARATOR.self::getComposerFile())) {
+        if (!file_exists($workspaceRoot . DIRECTORY_SEPARATOR . self::getComposerFile())) {
             $cwd = Platform::getCwd(true);
-            throw new \Exception(
+            throw new Exception(
                 sprintf(
                     'No %s found in %s or any of its parent directories. Did you run the composer init command?',
                     self::getComposerFile(),
@@ -36,7 +37,7 @@ final class Factory
 
         // abort when we reach the home dir or top of the filesystem
         while (dirname($dir) !== $dir && $dir !== $home) {
-            if (file_exists($dir.'/'.$workspaceFile)) {
+            if (file_exists($dir . '/' . $workspaceFile)) {
                 break;
             }
             $dir = dirname($dir);
