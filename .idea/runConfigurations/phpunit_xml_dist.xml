@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <CommandLine workingDirectory="$PROJECT_DIR$" />
+    <TestRunner configuration_file="/opt/project/phpunit.xml.dist" scope="XML" />
+    <method v="2" />
+  </configuration>
+</component>

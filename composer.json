@@ -9,11 +9,17 @@
         "symfony/finder": "^6.1"
     },
     "require-dev": {
-        "composer/composer": "^2.3"
+        "composer/composer": "^2.3",
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
             "Factorit\\ComposerWorkspacePlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Factorit\\ComposerWorkspacePlugin\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
