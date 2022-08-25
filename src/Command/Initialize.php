@@ -6,12 +6,14 @@ namespace Factorit\ComposerWorkspacePlugin\Command;
 
 use Composer\Command\BaseCommand;
 use Composer\Config\JsonConfigSource;
+use Composer\Console\Input\InputOption;
 use Composer\Json\JsonFile;
 use Composer\Util\Filesystem;
 use Composer\Util\Platform;
 use Factorit\ComposerWorkspacePlugin\Factory;
 use Factorit\ComposerWorkspacePlugin\WorkspaceConfig;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption as SymfonyInputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class Initialize extends BaseCommand
@@ -20,13 +22,23 @@ final class Initialize extends BaseCommand
     {
         $this->setName('workspace:init');
         $this->setDescription('Initialize workspace in current directory');
+        $this->setDefinition(
+            [
+                new InputOption(
+                    'packages',
+                    null,
+                    SymfonyInputOption::VALUE_IS_ARRAY | SymfonyInputOption::VALUE_REQUIRED,
+                    'paths to packages'
+                ),
+            ]
+        );
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         $io = $this->getIO();
 
-        $question = 'Would you like to define the package locations interactively [<comment>yes</comment>]? ';
+        $question = 'Would you like to define the package paths interactively [<comment>yes</comment>]? ';
         $packages = $input->getOption('packages');
         $packagePaths = [];
         if (count($packages) > 0 || $io->askConfirmation($question)) {
@@ -42,7 +54,7 @@ final class Initialize extends BaseCommand
         }
 
         $io = $this->getIO();
-        while (null !== $package = $io->ask('Add path to packages: ')) {
+        while (null !== $package = $io->ask('Add path to packages (globbing supported): ')) {
             $packages[] = $package;
         }
 
