@@ -5,7 +5,7 @@
     "license": "proprietary",
     "require": {
         "php": "^8.1",
-        "composer-plugin-api": "^2.4"
+        "composer-plugin-api": "^2.0"
     },
     "extra": {
         "class": "Monorepo\\Composer\\Plugin"
