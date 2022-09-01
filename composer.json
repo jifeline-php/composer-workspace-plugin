@@ -5,27 +5,12 @@
     "license": "proprietary",
     "require": {
         "php": "^8.1",
-        "composer-plugin-api": "^2.3",
-        "symfony/finder": "^6.1"
-    },
-    "require-dev": {
-        "composer/composer": "^2.3",
-        "phpunit/phpunit": "^9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "Factorit\\ComposerWorkspacePlugin\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Factorit\\ComposerWorkspacePlugin\\Tests\\": "tests/"
-        }
+        "composer-plugin-api": "^2.3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
-        "class": "Factorit\\ComposerWorkspacePlugin\\Plugin"
+        "class": "Monorepo\\Composer\\Plugin"
     },
     "config": {
         "sort-packages": true
